@@ -26,6 +26,7 @@
 //            echo $this->Form->control('fecha_creacion', ['empty' => true]);
             echo $this->Form->control('fecha_finalizado', ['empty' => true]);
             echo $this->Form->control('cantidad_votos');
+            echo $this->Form->control('detalles');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submitir')) ?>

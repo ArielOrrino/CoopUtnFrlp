@@ -71,6 +71,11 @@ class ProyectosTable extends Table
             ->integer('cantidad_votos')
             ->allowEmpty('cantidad_votos');
 
+        $validator
+            ->scalar('detalles')
+            ->maxLength('detalles', 255)
+            ->allowEmpty('fecha_finalizado');
+
         return $validator;
     }
 
