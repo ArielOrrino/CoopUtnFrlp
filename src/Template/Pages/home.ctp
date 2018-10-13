@@ -33,6 +33,8 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
     <meta property="og:site_name" content="Cooperativa Alumnos Utn">
     <script type="text/javascript" src="https://d1di2lzuh97fh2.cloudfront.net/files/3f/3fw/3fwae8.js?ph=a0eca4f8da"></script>
     
+   
+
     <title>Cooperativa alumnos UTN</title>
     <link href="https://d1di2lzuh97fh2.cloudfront.net/files/3r/3rx/3rxffv.css?ph=a0eca4f8da" rel="stylesheet">
      <?= $this->Html->meta('icon') ?> 
@@ -40,15 +42,17 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
 
-    <?= $this->Html->script('funciones.js') ?>
+    
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
     <body class="layout-03 wn-hp desktop">
+        <?= $this->Flash->render() ?>
     <div class="wnd-page c-orange">
         <div id="wrapper">
+                
             <header id="header">
                 <div class="section-wrapper cf">
                     <div class="section-wrapper-content cf">
@@ -106,7 +110,7 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                                                     <?php 
                                                     if (($this->request->getSession()->read('Auth.User.id_usuarios'))=='') : ?> 
                                                        <li>
-                                                        <a href="../Usuarios/Login">
+                                                        <a id = 'mybtn'>
                                                             <span>Login</span>
                                                         </a>            
                                                     </li>  
@@ -154,14 +158,45 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                         </div>
                     </div>
                 </div>
+                <div id="mymodal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="contenedor-form" id='toggle'>
+        <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+        <div class="formulario session id2" id="test">
+            <h2 id="IniciarS">Iniciar Sesión</h2>            
+            <?php echo $this->Form->create(null, ['url' => ['controller' => 'usuarios', 'action' => 'login']]); ?>
+         
+             <fieldset>               
+                <?= $this->Form->control('usuario', ['id' => 'usuario', 'type'=>'text', 'name'=>'usuario','placeholder' => 'Usuario', 'label'=>false, 'required']) ?>
+          
+                <?= $this->Form->control('password', ['type'=>'password', 'name' => 'password','id' => 'password','required', 'placeholder' => 'Password', 'label'=>false,
+                'required']) ?>
+                <div id="botoneslog">
+                <?= $this->Form->button('Iniciar Sesion') ?>                                 
+                <?= $this->Form->Html->link('Registrarse',['controller'=>'usuarios','action'=>'add'],['class'=>'button', 'id' => 'registrarse']) ?>             
+                </div>
+                </fieldset> 
+            <?=$this->Form->end() ?>
+        </div>
+    </div>
+    </div>
+  </div>
+
+</div>
             </header>
         </div>
     </div>
-    <?= $this->Flash->render() ?>
+    
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
     <footer>
     </footer>
 </body>
+<?= $this->Html->script('funciones.js') ?>
 </html>
