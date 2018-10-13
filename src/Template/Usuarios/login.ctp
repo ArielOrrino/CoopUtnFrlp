@@ -64,8 +64,7 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                 <?= $this->Form->control('password', ['type'=>'password', 'name' => 'password','id' => 'password','required', 'placeholder' => 'Password', 'label'=>false,
                 'required']) ?>
                 <div id="botoneslog">
-                <?= $this->Form->button('Iniciar Sesion') ?>
-                <button id="vibrar" class="vibrar" onclick="vibrador()">vibrar</button>
+                <?= $this->Form->button('Iniciar Sesion') ?>               
                 <?= $this->Form->Html->link('Registrarse',['controller'=>'usuarios','action'=>'add'],['class'=>'button', 'id' => 'registrarse']) ?>             
                 </div>
                 </fieldset> 
