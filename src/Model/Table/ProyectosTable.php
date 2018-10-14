@@ -73,8 +73,8 @@ class ProyectosTable extends Table
 
         $validator
             ->scalar('detalles')
-            ->maxLength('detalles', 255)
-            ->allowEmpty('fecha_finalizado');
+            ->maxLength('detalles', 1000)
+            ->allowEmpty('detalles');
 
         return $validator;
     }
