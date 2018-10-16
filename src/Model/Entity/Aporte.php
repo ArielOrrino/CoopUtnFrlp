@@ -24,6 +24,7 @@ class Aporte extends Entity
      */
     protected $_accessible = [
         'monto' => true,
-        'fecha_aporte' => true
+        'fecha_aporte' => true,
+        'proyectos_idproyectos' => true
     ];
 }

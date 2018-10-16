@@ -18,6 +18,34 @@ class UsuariosController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
+    public function home() {
+         $this->render();
+    }
+
+    public function login()
+    {
+         if ($this->request->is('post'))
+          {
+              $user= $this->Auth->identify();              
+             if($user)
+               {                    
+                    $this->Auth->setUser($user);
+                    return $this->redirect($this->Auth->redirectUrl());
+                }
+                else 
+                {                    
+                    $this->Flash->error('Usuario y/o contraseña incorrectos, vuelva a intentar');
+                }
+            }
+    }
+
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
+
+
+
     public function index()
     {
         $usuarios = $this->paginate($this->Usuarios);
@@ -52,11 +80,11 @@ class UsuariosController extends AppController
         if ($this->request->is('post')) {
             $usuario = $this->Usuarios->patchEntity($usuario, $this->request->getData());
             if ($this->Usuarios->save($usuario)) {
-                $this->Flash->success(__('The usuario has been saved.'));
+                $this->Flash->success(__('Usuario Grabado con exito.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller'=>'pages','action' => 'home']);
             }
-            $this->Flash->error(__('The usuario could not be saved. Please, try again.'));
+            $this->Flash->error(__('El usuario no pudo ser grabado.'));
         }
         $this->set(compact('usuario'));
     }
@@ -76,11 +104,11 @@ class UsuariosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $usuario = $this->Usuarios->patchEntity($usuario, $this->request->getData());
             if ($this->Usuarios->save($usuario)) {
-                $this->Flash->success(__('The usuario has been saved.'));
+                $this->Flash->success(__('Modificaciones grabadas con exito.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The usuario could not be saved. Please, try again.'));
+            $this->Flash->error(__('Las modificaciones no pudieron ser grabadas.'));
         }
         $this->set(compact('usuario'));
     }
@@ -97,11 +125,31 @@ class UsuariosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $usuario = $this->Usuarios->get($id);
         if ($this->Usuarios->delete($usuario)) {
-            $this->Flash->success(__('The usuario has been deleted.'));
+            $this->Flash->success(__('El usuario ha sido eliminado correctamente.'));
         } else {
-            $this->Flash->error(__('The usuario could not be deleted. Please, try again.'));
+            $this->Flash->error(__('El usuario no pudo ser eliminado.'));
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+     public function actualizarVoto($id = null,$voto=null)
+    {
+        $usuario = $this->Usuarios->get($id, [
+            'contain' => []
+        ]);
+
+         $usuario->set('voto', $voto);
+         $this->Usuarios->save($usuario);
+         $this->set(compact('usuario'));
+         $this->log($this->Auth->user('id_usuarios'));
+        $this->log($usuario->id_usuarios);
+         if ($this->Auth->user('id_usuarios') === $usuario->id_usuarios) {
+             $data = $usuario->toArray();
+              $this->log($data);
+             $this->Auth->setUser($data);
+             $this->log($this->Auth->user('voto'));
+        }
+        $this->redirect(array('controller' => 'Proyectos', 'action' => 'votos'));
     }
 }

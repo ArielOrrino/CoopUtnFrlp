@@ -6,8 +6,10 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Documentacion'), ['action' => 'add']) ?></li>
+        <li class="heading"><?= __('Modulos') ?></li>
+        <?php if ($this->request->getSession()->read('Auth.User.tipo_usuario')=='A') : ?> 
+             <li><?= $this->Html->link(__('Nueva Documentacion'), ['action' => 'add']) ?></li>
+        <?php endif; ?>
     </ul>
 </nav>
 <div class="documentacion index large-9 medium-8 columns content">
@@ -19,7 +21,7 @@
                 <th scope="col"><?= $this->Paginator->sort('idproyectos') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('monto_factura') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('fecha_subida') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col" class="actions"><?= __('Acciones') ?></th>
             </tr>
         </thead>
         <tbody>
@@ -30,9 +32,11 @@
                 <td><?= $this->Number->format($documentacion->monto_factura) ?></td>
                 <td><?= h($documentacion->fecha_subida) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $documentacion->iddocumentacion]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $documentacion->iddocumentacion]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $documentacion->iddocumentacion], ['confirm' => __('Are you sure you want to delete # {0}?', $documentacion->iddocumentacion)]) ?>
+                    <?= $this->Html->link(__('Ver'), ['action' => 'view', $documentacion->iddocumentacion]) ?>
+                <?php if ($this->request->getSession()->read('Auth.User.tipo_usuario')=='A') : ?> 
+                    <?= $this->Html->link(__('Editar'), ['action' => 'edit', $documentacion->iddocumentacion]) ?>
+                    <?= $this->Form->postLink(__('Borrar'), ['action' => 'delete', $documentacion->iddocumentacion], ['confirm' => __('Esta seguro que desea eliminar la documentacion # {0}?', $documentacion->iddocumentacion)]) ?>
+                <?php endif; ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -40,12 +44,12 @@
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->first('<< ' . __('Primera')) ?>
+            <?= $this->Paginator->prev('< ' . __('Anterior')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
+            <?= $this->Paginator->next(__('Siguiente') . ' >') ?>
+            <?= $this->Paginator->last(__('Ultima') . ' >>') ?>
         </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+       <p><?= $this->Paginator->counter(['format' => __('Pagina {{page}} de {{pages}}, mostrando {{current}} registro(s) de {{count}} en total')]) ?></p>
     </div>
 </div>

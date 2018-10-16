@@ -26,7 +26,7 @@ class AportesFixture extends TestFixture
         ],
         '_options' => [
             'engine' => 'InnoDB',
-            'collation' => 'utf8_general_ci'
+            'collation' => 'utf8_bin'
         ],
     ];
     // @codingStandardsIgnoreEnd
@@ -42,7 +42,7 @@ class AportesFixture extends TestFixture
             [
                 'idaportes' => 1,
                 'monto' => 1.5,
-                'fecha_aporte' => 1537056598
+                'fecha_aporte' => 1537127300
             ],
         ];
         parent::init();

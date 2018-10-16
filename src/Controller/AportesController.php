@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use MercadoPago;
 /**
  * Aportes Controller
  *
@@ -23,6 +23,48 @@ class AportesController extends AppController
         $aportes = $this->paginate($this->Aportes);
 
         $this->set(compact('aportes'));
+    }
+
+    public function confirm()
+    {
+        $aporte = $this->Aportes->newEntity();
+        if ($this->request->is('post')) {
+            $aporte = $this->Aportes->patchEntity($aporte, $this->request->getData());
+            if ($this->Aportes->save($aporte)) {
+                $this->Flash->success(__('El aporte ha sido registrado con exito.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('El aporte no se puedo registrar.'));
+        }
+        $this->set(compact('aporte'));
+    }
+
+     public function mp($monto)
+    {
+
+        MercadoPago\SDK::setClientId("7261628270430202");
+        MercadoPago\SDK::setClientSecret("l4QDNZqgIrBcKa4fg9ZYvLdsh9PYb9Bf");
+
+        # Create a preference object
+        $preference = new MercadoPago\Preference();
+        # Create an item object
+        $item = new MercadoPago\Item();
+        $item->id = "1234";
+        $item->title = "Cooperativa Utn La Plata";
+        $item->quantity = 1;
+        $item->currency_id = "ARS";
+        $item->unit_price = $monto;
+        # Create a payer object
+        $payer = new MercadoPago\Payer();
+        //$payer->email = "cary@yahoo.com";
+        # Setting preference properties
+        $preference->items = array($item);
+        $preference->payer = $payer;
+        # Save and posting preference
+        $preference->save();
+
+        $this->redirect("$preference->init_point");
     }
 
     /**
@@ -52,11 +94,11 @@ class AportesController extends AppController
         if ($this->request->is('post')) {
             $aporte = $this->Aportes->patchEntity($aporte, $this->request->getData());
             if ($this->Aportes->save($aporte)) {
-                $this->Flash->success(__('The aporte has been saved.'));
+                $this->Flash->success(__('El aporte ha sido registrado con exito.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The aporte could not be saved. Please, try again.'));
+            $this->Flash->error(__('El aporte no se puedo registrar.'));
         }
         $this->set(compact('aporte'));
     }
@@ -76,11 +118,11 @@ class AportesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $aporte = $this->Aportes->patchEntity($aporte, $this->request->getData());
             if ($this->Aportes->save($aporte)) {
-                $this->Flash->success(__('The aporte has been saved.'));
+                $this->Flash->success(__('El aporte ha sido registrado con exito.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The aporte could not be saved. Please, try again.'));
+            $this->Flash->error(__('El aporte no se puedo registrar.'));
         }
         $this->set(compact('aporte'));
     }
@@ -97,9 +139,9 @@ class AportesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $aporte = $this->Aportes->get($id);
         if ($this->Aportes->delete($aporte)) {
-            $this->Flash->success(__('The aporte has been deleted.'));
+            $this->Flash->success(__('El aporte ha sido eliminado con exito.'));
         } else {
-            $this->Flash->error(__('The aporte could not be deleted. Please, try again.'));
+            $this->Flash->error(__('El aporte no ha podido ser eliminado.'));
         }
 
         return $this->redirect(['action' => 'index']);

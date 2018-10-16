@@ -6,16 +6,17 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Usuario'), ['action' => 'edit', $usuario->id_usuarios]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Usuario'), ['action' => 'delete', $usuario->id_usuarios], ['confirm' => __('Are you sure you want to delete # {0}?', $usuario->id_usuarios)]) ?> </li>
-        <li><?= $this->Html->link(__('List Usuarios'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Usuario'), ['action' => 'add']) ?> </li>
+        <li class="heading"><?= __('Modulos') ?></li>
+        <?php if ($this->request->getSession()->read('Auth.User.usuario')==$usuario->usuario) : ?> 
+        <li><?= $this->Html->link(__('Editar Usuario'), ['action' => 'edit', $usuario->id_usuarios]) ?> </li>
+        <li><?= $this->Form->postLink(__('Borrar Usuario'), ['action' => 'delete', $usuario->id_usuarios], ['confirm' => __('Esta seguro que desea eliminar el usuario # {0}?', $usuario->id_usuarios)]) ?> </li>
+        <?php endif; ?>
+        <li><?= $this->Html->link(__('Lista de Usuarios'), ['action' => 'index']) ?> </li>
+
     </ul>
 </nav>
 <div class="usuarios view large-9 medium-8 columns content">
-    <h3><?= h($usuario->id_usuarios) ?></h3>
-    <table class="vertical-table">
+ <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Usuario') ?></th>
             <td><?= h($usuario->usuario) ?></td>
@@ -26,18 +27,18 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Password') ?></th>
-            <td><?= h($usuario->password) ?></td>
-        </tr>
+            <td><input value= "<?= h($usuario->password) ?>" type ="password" id="myInput" maxlength="8" size="8" readonly>
+            <?php if ($this->request->getSession()->read('Auth.User.usuario')==$usuario->usuario) : ?> 
+            <input type="checkbox" onclick="myFunction()">
+            <?php endif; ?>  
+        </td>                        
+        </tr>        
         <tr>
-            <th scope="row"><?= __('Id Usuarios') ?></th>
-            <td><?= $this->Number->format($usuario->id_usuarios) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Create Time') ?></th>
+            <th scope="row"><?= __('Fecha de Creacion') ?></th>
             <td><?= h($usuario->create_time) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Last Login') ?></th>
+            <th scope="row"><?= __('Ultimo Login') ?></th>
             <td><?= h($usuario->last_login) ?></td>
         </tr>
     </table>

@@ -58,6 +58,10 @@ class AportesTable extends Table
             ->dateTime('fecha_aporte')
             ->allowEmpty('fecha_aporte');
 
+        $validator
+            ->integer('proyectos_idproyectos')
+            ->allowEmpty('proyectos_idproyectos');
+
         return $validator;
     }
 

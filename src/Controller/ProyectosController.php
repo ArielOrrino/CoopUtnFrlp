@@ -52,11 +52,11 @@ class ProyectosController extends AppController
         if ($this->request->is('post')) {
             $proyecto = $this->Proyectos->patchEntity($proyecto, $this->request->getData());
             if ($this->Proyectos->save($proyecto)) {
-                $this->Flash->success(__('The proyecto has been saved.'));
+                $this->Flash->success(__('El proyecto ha sido agregado con exito.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The proyecto could not be saved. Please, try again.'));
+            $this->Flash->error(__('El proyecto no ha podido ser guardado.'));
         }
         $this->set(compact('proyecto'));
     }
@@ -76,11 +76,11 @@ class ProyectosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $proyecto = $this->Proyectos->patchEntity($proyecto, $this->request->getData());
             if ($this->Proyectos->save($proyecto)) {
-                $this->Flash->success(__('The proyecto has been saved.'));
+                $this->Flash->success(__('El proyecto ha sido agregado con exito.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The proyecto could not be saved. Please, try again.'));
+            $this->Flash->error(__('El proyecto no ha podido ser guardado.'));
         }
         $this->set(compact('proyecto'));
     }
@@ -97,11 +97,28 @@ class ProyectosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $proyecto = $this->Proyectos->get($id);
         if ($this->Proyectos->delete($proyecto)) {
-            $this->Flash->success(__('The proyecto has been deleted.'));
+            $this->Flash->success(__('El proyecto ha sido eliminado'));
         } else {
-            $this->Flash->error(__('The proyecto could not be deleted. Please, try again.'));
+            $this->Flash->error(__('El proyecto no ha podido ser eliminado.'));
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function vote($idProyecto = null,$idUser=null)
+    {
+        $proyecto = $this->Proyectos->get($idProyecto);
+        $proyecto->set('cantidad_votos', $proyecto->cantidad_votos + 1);
+        $this->log($idProyecto);
+        $this->log($idUser);
+        $this->Proyectos->save($proyecto);     
+        $this->redirect(array('controller' => 'Usuarios', 'action' => 'actualizarVoto', $idUser,$proyecto->idproyectos));
+    }
+
+    public function votos()
+    {
+        $proyectos = $this->paginate($this->Proyectos);
+
+        $this->set(compact('proyectos'));
     }
 }

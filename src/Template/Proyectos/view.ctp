@@ -6,11 +6,14 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Proyecto'), ['action' => 'edit', $proyecto->idproyectos]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Proyecto'), ['action' => 'delete', $proyecto->idproyectos], ['confirm' => __('Are you sure you want to delete # {0}?', $proyecto->idproyectos)]) ?> </li>
-        <li><?= $this->Html->link(__('List Proyectos'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Proyecto'), ['action' => 'add']) ?> </li>
+        <li class="heading"><?= __('Modulos') ?></li>
+        <?php if ($this->request->getSession()->read('Auth.User.tipo_usuario')=='A') : ?> 
+          <li><?= $this->Html->link(__('Nuevo Proyecto'), ['action' => 'add']) ?> </li>
+          <li><?= $this->Html->link(__('Editar Proyecto'), ['action' => 'edit', $proyecto->idproyectos]) ?> </li>
+          <li><?= $this->Form->postLink(__('Borrar Proyecto'), ['action' => 'delete', $proyecto->idproyectos], ['confirm' => __('Esta seguro que desea eliminar el proyecto # {0}?', $proyecto->idproyectos)]) ?> </li>
+        <?php endif; ?>
+        <li><?= $this->Html->link(__('Lista de Proyectos'), ['action' => 'index']) ?> </li>
+        
     </ul>
 </nav>
 <div class="proyectos view large-9 medium-8 columns content">
@@ -19,10 +22,6 @@
         <tr>
             <th scope="row"><?= __('Nombre Proyecto') ?></th>
             <td><?= h($proyecto->nombre_proyecto) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Idproyectos') ?></th>
-            <td><?= $this->Number->format($proyecto->idproyectos) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Monto Necesario') ?></th>

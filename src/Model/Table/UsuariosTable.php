@@ -52,9 +52,7 @@ class UsuariosTable extends Table
         $validator
             ->scalar('usuario')
             ->maxLength('usuario', 30)
-            ->requirePresence('usuario', 'create')
-            ->notEmpty('usuario')
-            ->add('usuario', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
+            ->allowEmpty('usuario', 'create');
 
         $validator
             ->email('email')
@@ -62,7 +60,7 @@ class UsuariosTable extends Table
 
         $validator
             ->scalar('password')
-            ->maxLength('password', 32)
+            ->maxLength('password', 255)
             ->requirePresence('password', 'create')
             ->notEmpty('password');
 
@@ -73,6 +71,21 @@ class UsuariosTable extends Table
         $validator
             ->dateTime('last_login')
             ->allowEmpty('last_login');
+
+        $validator
+            ->scalar('tipo_usuario')
+            ->maxLength('tipo_usuario', 1)
+            ->allowEmpty('tipo_usuario', 'create');
+
+         $validator
+            ->scalar('autorizado')
+            ->maxLength('autorizado', 1)
+            ->allowEmpty('autorizado', 'create');
+
+        $validator
+            ->scalar('voto')
+            ->maxLength('voto', 1)
+            ->allowEmpty('voto', 'create');
 
         return $validator;
     }
@@ -87,9 +100,20 @@ class UsuariosTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->isUnique(['usuario']));
         $rules->add($rules->isUnique(['id_usuarios']));
 
         return $rules;
+    }
+
+     public function findAuth(\Cake\ORM\Query $query, array $options)
+    {
+    $query
+        ->find('all');
+        
+
+    return $query;
+    }
+    public function check($usuario,$pass){
+        return ((new DefaultPasswordHasher)->check($pass,$usuario->password));
     }
 }

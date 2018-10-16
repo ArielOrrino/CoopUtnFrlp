@@ -34,11 +34,12 @@ class DocumentacionFixture extends TestFixture
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['iddocumentacion', 'idproyectos'], 'length' => []],
+            'iddocumentacion_UNIQUE' => ['type' => 'unique', 'columns' => ['iddocumentacion'], 'length' => []],
             'fk_documentacion_proyectos' => ['type' => 'foreign', 'columns' => ['idproyectos'], 'references' => ['proyectos', 'idproyectos'], 'update' => 'noAction', 'delete' => 'noAction', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
-            'collation' => 'utf8_general_ci'
+            'collation' => 'utf8_bin'
         ],
     ];
     // @codingStandardsIgnoreEnd

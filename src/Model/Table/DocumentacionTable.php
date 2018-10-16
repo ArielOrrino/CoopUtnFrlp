@@ -33,7 +33,7 @@ class DocumentacionTable extends Table
 
         $this->setTable('documentacion');
         $this->setDisplayField('iddocumentacion');
-        $this->setPrimaryKey(['iddocumentacion', 'idproyectos']);
+        $this->setPrimaryKey('iddocumentacion');
     }
 
     /**
@@ -46,7 +46,8 @@ class DocumentacionTable extends Table
     {
         $validator
             ->integer('iddocumentacion')
-            ->allowEmpty('iddocumentacion', 'create');
+            ->allowEmpty('iddocumentacion', 'create')
+            ->add('iddocumentacion', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->integer('idproyectos')
@@ -64,5 +65,19 @@ class DocumentacionTable extends Table
             ->allowEmpty('fecha_subida');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->isUnique(['iddocumentacion']));
+
+        return $rules;
     }
 }

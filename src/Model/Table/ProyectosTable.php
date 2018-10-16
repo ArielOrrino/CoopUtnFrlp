@@ -46,7 +46,8 @@ class ProyectosTable extends Table
     {
         $validator
             ->integer('idproyectos')
-            ->allowEmpty('idproyectos', 'create');
+            ->allowEmpty('idproyectos', 'create')
+            ->add('idproyectos', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->scalar('nombre_proyecto')
@@ -71,5 +72,19 @@ class ProyectosTable extends Table
             ->allowEmpty('cantidad_votos');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules)
+    {
+        $rules->add($rules->isUnique(['idproyectos']));
+
+        return $rules;
     }
 }

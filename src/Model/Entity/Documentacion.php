@@ -25,6 +25,7 @@ class Documentacion extends Entity
      * @var array
      */
     protected $_accessible = [
+        'idproyectos' => true,
         'factura' => true,
         'monto_factura' => true,
         'fecha_subida' => true

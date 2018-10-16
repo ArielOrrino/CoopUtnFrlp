@@ -13,8 +13,7 @@
  * @license       https://opensource.org/licenses/mit-license.php MIT License
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
-?>
+$cakeDescription = 'Cooperativa alumnos UTN';?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +23,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
-    <?= $this->Html->meta('icon') ?>
+     <?= $this->Html->meta('icon') ?> 
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
+
+    <?= $this->Html->script('funciones.js') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -41,9 +42,20 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             </li>
         </ul>
         <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
+            <ul class="left">
+                <li><a href="../../">Inicio</a></li>
+                <?php if ($this->request->getSession()->read('Auth.User.tipo_usuario')=='A') : ?> 
+                    <li><a href="../../usuarios">Usuarios</a></li>
+                <?php endif; ?>    
+                <li><a href="../../aportes">Aportes</a></li>
+                <li><a href="../../proyectos">Proyectos</a></li>
+                <li><a href="../../documentacion">Documentacion</a></li>  
+                <?php 
+                if ($this->request->getSession()->read('Auth.User.id_usuarios')=='') : ?> 
+                    <li><a href="../Usuarios/Login">Login</a></li>  
+                <?php else : ?>
+                    <li><a href="../Usuarios/Logout" class="logoutR">Usuario:<?php echo $this->request->getSession()->read('Auth.User.usuario')?>(Logout)</a></li>              
+                <?php endif; ?>                        
             </ul>
         </div>
     </nav>

@@ -6,28 +6,28 @@
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
+        <li class="heading"><?= __('Modulos') ?></li>
         <li><?= $this->Form->postLink(
-                __('Delete'),
+                __('Borrar'),
                 ['action' => 'delete', $proyecto->idproyectos],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $proyecto->idproyectos)]
+                ['confirm' => __('Esta seguro que desea eliminar el proyecto # {0}?', $proyecto->idproyectos)]
             )
         ?></li>
-        <li><?= $this->Html->link(__('List Proyectos'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('Lista de Proyectos'), ['action' => 'index']) ?></li>
     </ul>
 </nav>
 <div class="proyectos form large-9 medium-8 columns content">
     <?= $this->Form->create($proyecto) ?>
     <fieldset>
-        <legend><?= __('Edit Proyecto') ?></legend>
+        <legend><?= __('Editar Proyecto') ?></legend>
         <?php
             echo $this->Form->control('nombre_proyecto');
             echo $this->Form->control('monto_necesario');
-            echo $this->Form->control('fecha_creacion', ['empty' => true]);
+//            echo $this->Form->control('fecha_creacion', ['empty' => true]);
             echo $this->Form->control('fecha_finalizado', ['empty' => true]);
             echo $this->Form->control('cantidad_votos');
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <?= $this->Form->button(__('Submitir')) ?>
     <?= $this->Form->end() ?>
 </div>
