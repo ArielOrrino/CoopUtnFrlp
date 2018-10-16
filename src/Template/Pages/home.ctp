@@ -66,7 +66,7 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                                              <div class="logo-content">        
                                                <div class="logo-image">
                                                  <div class="logo-image-cell">
-                                       <img src="https://cooperativa19.webnode.com/_files/200000000-a34d6a441c/200/5fgI4pqs_400x400.jpg">
+                                       <img id="logomenu" src="https://cooperativa19.webnode.com/_files/200000000-a34d6a441c/200/5fgI4pqs_400x400.jpg">
                                                  </div>
                                                 </div>            
                                                  <div class="logo-text">
@@ -101,7 +101,7 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                                                         <a href="../../documentacion/">
                                                             <span>Documentacion</span>
                                                         </a>            
-                                                    </li>
+                                                    </li>                                                   
                                                     <li>
                                                         <a href="../../aportes">
                                                             <span>Aportes</span>

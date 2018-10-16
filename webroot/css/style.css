@@ -814,3 +814,26 @@ table td {
     vertical-align: top;
     word-break: break-all;
 }
+
+#plantillaproy {
+    margin-bottom: 100px;
+}
+
+.titproy {
+    text-align: center;
+}
+
+#titnoticias {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #be140b;
+}
+
+.notiproy {
+    margin-top: 80px;
+}
+
+.imgpro {
+    height: 500px !important;
+    width: 1100px !important;
+}

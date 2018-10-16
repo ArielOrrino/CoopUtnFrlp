@@ -33,6 +33,18 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
     <nav class="top-bar expanded" data-topbar role="navigation">
@@ -50,6 +62,7 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                 <li><a href="../../aportes">Aportes</a></li>
                 <li><a href="../../proyectos">Proyectos</a></li>
                 <li><a href="../../documentacion">Documentacion</a></li>  
+                <li><a href="../../noticias">Noticias</a></li>  
                 <?php 
                 if ($this->request->getSession()->read('Auth.User.id_usuarios')=='') : ?> 
                     <li><a href="../Usuarios/Login">Login</a></li>  
