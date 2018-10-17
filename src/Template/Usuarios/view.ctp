@@ -25,14 +25,7 @@
             <th scope="row"><?= __('Email') ?></th>
             <td><?= h($usuario->email) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Password') ?></th>
-            <td><input value= "<?= h($usuario->password) ?>" type ="password" id="myInput" maxlength="8" size="8" readonly>
-            <?php if ($this->request->getSession()->read('Auth.User.usuario')==$usuario->usuario) : ?> 
-            <input type="checkbox" onclick="myFunction()">
-            <?php endif; ?>  
-        </td>                        
-        </tr>        
+            
         <tr>
             <th scope="row"><?= __('Fecha de Creacion') ?></th>
             <td><?= h($usuario->create_time) ?></td>
