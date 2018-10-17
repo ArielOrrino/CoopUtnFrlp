@@ -94,9 +94,9 @@ class AportesController extends AppController
         if ($this->request->is('post')) {
             $aporte = $this->Aportes->patchEntity($aporte, $this->request->getData());
             if ($this->Aportes->save($aporte)) {
-                $this->Flash->success(__('El aporte ha sido registrado con exito.'));
+                
+                return $this->redirect(array('action' => 'recibo', $aporte->idaportes));
 
-                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('El aporte no se puedo registrar.'));
         }
@@ -145,5 +145,13 @@ class AportesController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+public function recibo($id = null)
+    {
+       $aporte = $this->Aportes->get($id, [
+            'contain' => []
+        ]);
+
+        $this->set('aporte', $aporte);  
     }
 }
