@@ -1,3 +1,31 @@
+.espacioQR {
+
+    margin:5px;
+    padding:5px;
+
+}
+
+#qr {
+  width:10px;
+  height:100px;
+  margin: 0 auto;
+  margin-top: 15px;
+
+}
+
+.recibo {
+    border: solid;
+    border-color: gray;
+    padding: 10px;
+    padding-bottom: 30px;
+}
+.LogoRecibo{
+    float:right;
+    width: 100px; /* Full width */
+    height: 80px; /* Full height */
+}
+
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
