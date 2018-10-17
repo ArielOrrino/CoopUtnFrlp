@@ -3,7 +3,9 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Documentacion[]|\Cake\Collection\CollectionInterface $noticias
  */
+
 ?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <div class="noticias index content">
     <h1 id="titnoticias">NOTICIAS DE PROYECTOS</h1>
 

@@ -18,10 +18,9 @@
 
         <h3> Hemos recibido tu aporte, tu ayuda es muy valiosa para continuar mejorando nuestra Universidad juntos, muchas gracias! </h3>
         <span> Tu aporte de $<?php echo $aporte->monto ?> fue registrado exitosamente, podras verlo en la pagina con el numero de control # <?php echo $aporte->idaportes ?> con fecha <?php echo $aporte->fecha_aporte ?></span>
-<div class ='espacioQR'> 
-    <span> Si lo deseas, podes escanear este codigo y te redirigirá a ver tu aporte</span>
-    <div id='qr'>        
-     </div> 
+        <div class ='espacioQR'> 
+            <span> Si lo deseas, podes escanear este codigo y te redirigirá a ver tu aporte</span>
+        <div id='qr'></div> 
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
@@ -40,4 +39,3 @@
 
     </div>
 </div>
-  <!-- <textarea name="msg" rows="10" cols="40" value = "http://localhost:8765/aportes/view/<?php echo $aporte->idaportes ?>" onload="update_qrcode()"></textarea><br>  -->
