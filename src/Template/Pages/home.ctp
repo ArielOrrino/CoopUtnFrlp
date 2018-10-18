@@ -58,7 +58,8 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                     <div class="section-wrapper-content cf">
                         <div class="section header fullscreen-all header-03 home s-media wnd-background-image">
                             <div class="section-bg">
-                                <div class="section-bg-layer wnd-background-image  bgatt-scroll bgpos-center-center" style="background-image: url(&quot;https://cooperativa19.webnode.com/_files/200000001-5b0935c01e/FRLP%206.JPG?t=1&quot;);">
+                                <div class="section-bg-layer wnd-background-image  bgatt-scroll bgpos-center-center">
+                                    <img src="/img/FRLP.jpg">
                                 </div>
                                 <div class="header-wrapper header-fixed wnd-fixed header-bg">
                                     <div class="nav-line section-inner">
