@@ -40,21 +40,20 @@ class AportesController extends AppController
         $this->set(compact('aporte'));
     }
 
-     public function newuser(){
+    public function confirm1()
+    {
+        $aporte = $this->Aportes->newEntity();
+        if ($this->request->is('post')) {
+            $aporte = $this->Aportes->patchEntity($aporte, $this->request->getData());
+            if ($this->Aportes->save($aporte)) {
+                $this->Flash->success(__('El aporte ha sido registrado con exito.'));
 
-        MercadoPago\SDK::setAccessToken("123456");
-
-            $body = array(
-            "json_data" => array(
-            "site_id" => "MLA"
-             )
-            );
-
-        $result = MercadoPago\SDK::post('/users/test_user', $body);
-        var_dump($result);
-        $this->log($result);
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('El aporte no se puedo registrar.'));
+        }
+        $this->set(compact('aporte'));
     }
-
 
      public function mp($monto)
     {
@@ -75,8 +74,8 @@ class AportesController extends AppController
         $payer = new MercadoPago\Payer();
         $preference->back_urls = array(
           //"success" => $this->redirect('aportes/recibo'),
-          "success" => "http://localhost:8765/aportes/addmp/$monto",
-         "failure" => "http://www.tu-sitio/failure",
+         "success" => "http://localhost:8765/aportes/addmp/$monto",
+         "failure" => "http://localhost:8765/aportes/confirm1/$monto",
          "pending" => "http://www.tu-sitio/pending"
 );
 $preference->auto_return = "approved";

@@ -1,3 +1,11 @@
+.mpError {
+
+    border: solid;
+    border-color: red;
+    border-width: 3px;
+
+}
+
 .espacioQR {
 
     margin:5px;
@@ -25,7 +33,10 @@
     height: 80px; /* Full height */
 }
 
-
+#logomenu{
+    width: 80px !important; /* Full width */
+    height: 50px; /* Full height */
+}
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
