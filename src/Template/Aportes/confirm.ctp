@@ -24,6 +24,6 @@
             echo $this->Form->control('fecha_aporte', ['type' => 'hidden', 'value' => $now]);            
         ?>
     </fieldset>
-    <?php echo $this->Html->link(('Donar'), ['action' => 'mp', $MD],array('class' => 'button', 'id' => 'bdonar'));?>  
+    <?php echo $this->Html->link(('Donar'), ['action' => 'mp', $MD],array('class' => 'button', 'id' => 'bdonar'));?>
     <?= $this->Form->end() ?>
 </div>
