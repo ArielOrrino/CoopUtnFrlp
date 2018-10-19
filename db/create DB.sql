@@ -66,6 +66,8 @@ CREATE TABLE IF NOT EXISTS `cooperativa`.`usuarios` (
   `id_usuarios` INT(11) NOT NULL AUTO_INCREMENT,
   `usuario` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NULL DEFAULT NULL,
+  `verified` INT(1) NULL DEFAULT NULL,
+  `token` VARCHAR(255) NULL DEFAULT NULL,
   `password` VARCHAR(255) NOT NULL,
   `create_time` TIMESTAMP NULL DEFAULT NULL,
   `last_login` TIMESTAMP NULL DEFAULT NULL,

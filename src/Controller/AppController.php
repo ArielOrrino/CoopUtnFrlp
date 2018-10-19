@@ -45,19 +45,19 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         $this->loadComponent('Auth',[
                                      'authorize' => ['Controller'],
-                                     'loginAction' => 
+                                     'loginAction' =>
                                      [
                                         'controller' => 'usuarios',
                                         'action' => 'login'
                                      ],
-                                     'loginRedirect' => 
+                                     'loginRedirect' =>
                                      [
-                                        'controller' => 'pages', 
+                                        'controller' => 'pages',
                                         'action' => 'index'
                                      ],
-                                     'logoutRedirect' => 
+                                     'logoutRedirect' =>
                                      [
-                                        'controller' => 'pages', 
+                                        'controller' => 'pages',
                                         'action' => 'index'
                                      ],
                                      'authenticate' => [
@@ -69,7 +69,7 @@ class AppController extends Controller
                                         ],
                                      'storage' => 'Session',
                                      'unauthorizedRedirect' => ['controller' => 'Pages', 'action' => 'display']
-                            ]);  
+                            ]);
 
         /*
          * Enable the following component for recommended CakePHP security settings.
@@ -81,14 +81,14 @@ class AppController extends Controller
     public function isAuthorized($user) {
         return true;
     }
- 
+
 
  public function beforeFilter(Event $event)
     {
 
  //usuario sin loggear
 
-$this->Auth->allow(['index','display','login','home']);
+$this->Auth->allow(['index','display','login','home', 'verification', 'confirm']);
 
 if(in_array($this->request->getParam('controller'),['Usuarios'])){
             if(in_array($this->request->getParam('action'),['add'])){
@@ -100,35 +100,35 @@ if(in_array($this->request->getParam('controller'),['Aportes'])){
                 $this->Auth->allow(['view']);
       }
     }
-if($this->Auth->user('tipo_usuario') == ''){      
-    if(in_array($this->request->getParam('controller'),['Usuarios'])){      
+if($this->Auth->user('tipo_usuario') == ''){
+    if(in_array($this->request->getParam('controller'),['Usuarios'])){
                 $this->Auth->deny(['index','delete','edit','view']);
             }
-        } 
+        }
 
 //usuario admin
 
-if($this->Auth->user('tipo_usuario') == 'A'){            
+if($this->Auth->user('tipo_usuario') == 'A'){
     $this->Auth->allow(['index','display','login','home','add','delete','edit','view','confirm']);
  }
 
 //usuario común
- 
-if($this->Auth->user('tipo_usuario') == 'C'){      
-    if(in_array($this->request->getParam('controller'),['Usuarios'])){      
+
+if($this->Auth->user('tipo_usuario') == 'C'){
+    if(in_array($this->request->getParam('controller'),['Usuarios'])){
                 $this->Auth->deny(['index','delete','edit','view']);
             }
  }
 
- if($this->Auth->user('tipo_usuario') == ''){      
-    if(in_array($this->request->getParam('controller'),['Usuarios'])){      
+ if($this->Auth->user('tipo_usuario') == ''){
+    if(in_array($this->request->getParam('controller'),['Usuarios'])){
                 $this->Auth->deny(['index','delete','edit','view']);
             }
  }
 
-   
-            
-        
+
+
+
 }
  /*   public function beforeFilter(Event $event)
     {
