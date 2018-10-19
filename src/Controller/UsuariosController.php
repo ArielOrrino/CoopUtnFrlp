@@ -7,7 +7,6 @@ use Cake\ORM\TableRegistry;
 use Cake\Mailer\Email;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Utility\Security;
-use Cake\ORM\TableRegistry;
 
 /**
  * Usuarios Controller
