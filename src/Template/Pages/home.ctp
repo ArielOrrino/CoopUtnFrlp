@@ -33,16 +33,12 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
     <meta property="og:site_name" content="Cooperativa Alumnos Utn">
     <script type="text/javascript" src="https://d1di2lzuh97fh2.cloudfront.net/files/3f/3fw/3fwae8.js?ph=a0eca4f8da"></script>
     
-   
-
     <title>Cooperativa alumnos UTN</title>
     <link href="https://d1di2lzuh97fh2.cloudfront.net/files/3r/3rx/3rxffv.css?ph=a0eca4f8da" rel="stylesheet">
      <?= $this->Html->meta('icon') ?> 
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
-
-    
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -152,6 +148,13 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                                                     </span>
                                                 </div>
                                             </h1>
+                                            <?php if ($this->request->getSession()->read('Auth.User.notificacion')=='1') : ?> 
+                                                 <div id="notific" class="w3-panel w3-green w3-round">
+                                                    <strong>Finalizó uno de los Proyectos!</strong>
+                                                    <?= $this->Form->Html->link('Hace click acá y enterate',['controller'=>'usuarios','action'=>'borrarnoti'],['class'=>'linknoti', 'onClick' => 'cerrarnoti()']) ?>
+                                                    <?= $this->Form->Html->link('X',['controller'=>'usuarios','action'=>'borrarnoti2'],['class'=>'linknoti', 'id' => 'noti2', 'onClick' => 'cerrarnoti()']) ?>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>

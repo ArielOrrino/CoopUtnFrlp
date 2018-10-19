@@ -23,8 +23,8 @@
         <?php
             echo $this->Form->control('nombre_proyecto');
             echo $this->Form->control('monto_necesario');
-//            echo $this->Form->control('fecha_creacion', ['empty' => true]);
-            echo $this->Form->control('fecha_finalizado', ['empty' => true]);
+//          echo $this->Form->control('fecha_creacion', ['empty' => true]);
+            echo $this->Form->control('fecha_finalizado', ['id' => 'fefin', 'empty' => true]);
             echo $this->Form->control('cantidad_votos');
             echo $this->Form->control('detalles');
         ?>

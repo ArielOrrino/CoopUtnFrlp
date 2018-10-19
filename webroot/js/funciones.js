@@ -7,6 +7,9 @@ function myFunction() {
     }
 }
 
+function cerrarnoti() {
+  document.getElementById("notific").style.display = "none";
+}
 
 function guardarMonto() {
     var montoDonacion = document.getElementById("monto").value;

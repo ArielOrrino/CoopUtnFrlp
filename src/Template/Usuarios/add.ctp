@@ -27,6 +27,7 @@
             echo $this->Form->control('tipo_usuario', ['type' => 'hidden','value' => "C",'maxlength'=>"1", 'size'=>"1"]);
             echo $this->Form->control('autorizado', ['type' => 'hidden', 'value' => "1"]);
             echo $this->Form->control('voto', ['type' => 'hidden', 'value' => "0"]);
+            echo $this->Form->control('notificacion', ['type' => 'hidden', 'value' => "0"]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submitir')) ?>
