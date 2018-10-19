@@ -40,11 +40,26 @@ class AportesController extends AppController
         $this->set(compact('aporte'));
     }
 
+    public function confirm1()
+    {
+        $aporte = $this->Aportes->newEntity();
+        if ($this->request->is('post')) {
+            $aporte = $this->Aportes->patchEntity($aporte, $this->request->getData());
+            if ($this->Aportes->save($aporte)) {
+                $this->Flash->success(__('El aporte ha sido registrado con exito.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('El aporte no se puedo registrar.'));
+        }
+        $this->set(compact('aporte'));
+    }
+
      public function mp($monto)
     {
 
-        MercadoPago\SDK::setClientId("7261628270430202");
-        MercadoPago\SDK::setClientSecret("l4QDNZqgIrBcKa4fg9ZYvLdsh9PYb9Bf");
+        MercadoPago\SDK::setClientId("2771105279269347");
+        MercadoPago\SDK::setClientSecret("9lxEDkQYJIsHIQ13Iw4mVjbG8Z2O91f6");
 
         # Create a preference object
         $preference = new MercadoPago\Preference();
@@ -57,14 +72,21 @@ class AportesController extends AppController
         $item->unit_price = $monto;
         # Create a payer object
         $payer = new MercadoPago\Payer();
+        $preference->back_urls = array(
+          //"success" => $this->redirect('aportes/recibo'),
+         "success" => "http://localhost:8765/aportes/addmp/$monto",
+         "failure" => "http://localhost:8765/aportes/confirm1/$monto",
+         "pending" => "http://www.tu-sitio/pending"
+);
+$preference->auto_return = "approved";
         //$payer->email = "cary@yahoo.com";
         # Setting preference properties
         $preference->items = array($item);
         $preference->payer = $payer;
         # Save and posting preference
         $preference->save();
-
-        $this->redirect("$preference->init_point");
+$this->redirect("$preference->sandbox_init_point");
+        // $this->redirect("$preference->init_point");
     }
 
     /**
@@ -94,9 +116,9 @@ class AportesController extends AppController
         if ($this->request->is('post')) {
             $aporte = $this->Aportes->patchEntity($aporte, $this->request->getData());
             if ($this->Aportes->save($aporte)) {
-                $this->Flash->success(__('El aporte ha sido registrado con exito.'));
+                
+                return $this->redirect(array('action' => 'recibo', $aporte->idaportes));
 
-                return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('El aporte no se puedo registrar.'));
         }
@@ -146,4 +168,24 @@ class AportesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+public function recibo($id = null)
+    {
+       $aporte = $this->Aportes->get($id, [
+            'contain' => []
+        ]);
+
+        $this->set('aporte', $aporte);  
+    }
+
+    public function addmp($monto = null)
+     {
+        $aporte = $this->Aportes->newEntity();
+        $aporte->monto = $monto;
+        date_default_timezone_set("America/Argentina/Buenos_Aires");
+        $now = date('Y-m-d H:i:s',Time());
+        $aporte->fecha_aporte = $now;
+        $this->Aportes->save($aporte);
+        return $this->redirect(array('action' => 'recibo', $aporte->idaportes));           
+    }
+        
 }

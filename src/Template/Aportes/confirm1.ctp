@@ -26,4 +26,6 @@
     </fieldset>
     <?php echo $this->Html->link(('Donar'), ['action' => 'mp', $MD],array('class' => 'button', 'id' => 'bdonar'));?>
     <?= $this->Form->end() ?>
+    <div class="mpError">
+    <span> Hubo un error en el procesamiento de tu donacion, no se ha generado ningun consumo. Por favor, volvé a intentarlo presionando nuevamente el voton DONAR.</div>
 </div>

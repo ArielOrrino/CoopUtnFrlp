@@ -39,5 +39,10 @@
             <th scope="row"><?= __('Fecha Finalizado') ?></th>
             <td><?= h($proyecto->fecha_finalizado) ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('Detalles') ?></th>
+            <td><?= h($proyecto->detalles) ?></td>
+        </tr>
     </table>
+
 </div>

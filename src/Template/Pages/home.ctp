@@ -33,6 +33,8 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
     <meta property="og:site_name" content="Cooperativa Alumnos Utn">
     <script type="text/javascript" src="https://d1di2lzuh97fh2.cloudfront.net/files/3f/3fw/3fwae8.js?ph=a0eca4f8da"></script>
     
+   
+
     <title>Cooperativa alumnos UTN</title>
     <link href="https://d1di2lzuh97fh2.cloudfront.net/files/3r/3rx/3rxffv.css?ph=a0eca4f8da" rel="stylesheet">
      <?= $this->Html->meta('icon') ?> 
@@ -40,21 +42,24 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
 
-    <?= $this->Html->script('funciones.js') ?>
+    
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
     <body class="layout-03 wn-hp desktop">
+        <?= $this->Flash->render() ?>
     <div class="wnd-page c-orange">
         <div id="wrapper">
+                
             <header id="header">
                 <div class="section-wrapper cf">
                     <div class="section-wrapper-content cf">
                         <div class="section header fullscreen-all header-03 home s-media wnd-background-image">
                             <div class="section-bg">
-                                <div class="section-bg-layer wnd-background-image  bgatt-scroll bgpos-center-center" style="background-image: url(&quot;https://cooperativa19.webnode.com/_files/200000001-5b0935c01e/FRLP%206.JPG?t=1&quot;);">
+                                <div class="section-bg-layer wnd-background-image  bgatt-scroll bgpos-center-center">
+                                    <img src="/img/FRLP.jpg">
                                 </div>
                                 <div class="header-wrapper header-fixed wnd-fixed header-bg">
                                     <div class="nav-line section-inner">
@@ -62,7 +67,7 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                                              <div class="logo-content">        
                                                <div class="logo-image">
                                                  <div class="logo-image-cell">
-                                       <img src="https://cooperativa19.webnode.com/_files/200000000-a34d6a441c/200/5fgI4pqs_400x400.jpg">
+                                       <img id="logomenu" src="/img/logoCoop.jpg">
                                                  </div>
                                                 </div>            
                                                  <div class="logo-text">
@@ -97,7 +102,7 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                                                         <a href="../../documentacion/">
                                                             <span>Documentacion</span>
                                                         </a>            
-                                                    </li>
+                                                    </li>                                                   
                                                     <li>
                                                         <a href="../../aportes">
                                                             <span>Aportes</span>
@@ -106,7 +111,7 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                                                     <?php 
                                                     if (($this->request->getSession()->read('Auth.User.id_usuarios'))=='') : ?> 
                                                        <li>
-                                                        <a href="../Usuarios/Login">
+                                                        <a id = 'mybtn'>
                                                             <span>Login</span>
                                                         </a>            
                                                     </li>  
@@ -154,14 +159,46 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                         </div>
                     </div>
                 </div>
+                <div id="mymodal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="contenedor-form" id='toggle'>
+        <div class="modal-header">
+      <span class="close">&times;</span>
+    </div>
+        <div class="formulario session id2" id="test">
+            <h2 id="IniciarS">Iniciar Sesión</h2>            
+            <?php echo $this->Form->create(null, ['url' => ['controller' => 'usuarios', 'action' => 'login']]); ?>
+         
+             <fieldset>               
+                <?= $this->Form->control('usuario', ['id' => 'usuario', 'type'=>'text', 'name'=>'usuario','placeholder' => 'Usuario', 'label'=>false, 'required']) ?>
+          
+                <?= $this->Form->control('password', ['type'=>'password', 'name' => 'password','id' => 'password','required', 'placeholder' => 'Password', 'label'=>false,
+                'required']) ?>
+                <div id="botoneslog">
+                <?= $this->Form->button('Iniciar Sesion',['class'=>'login','id'=>'login','name'=>'login']) ?>                                 
+                <?= $this->Form->Html->link('Registrarse',['controller'=>'usuarios','action'=>'add'],['class'=>'button', 'id' => 'registrarse']) ?>             
+                </div>
+                <div id = "error"> </div>
+                </fieldset> 
+            <?=$this->Form->end() ?>
+        </div>
+    </div>
+    </div>
+  </div>
+
+</div>
             </header>
         </div>
     </div>
-    <?= $this->Flash->render() ?>
+    
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
     <footer>
     </footer>
 </body>
+<?= $this->Html->script('funciones.js') ?>
 </html>

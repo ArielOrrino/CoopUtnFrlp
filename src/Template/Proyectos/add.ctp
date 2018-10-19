@@ -22,6 +22,7 @@
             echo $this->Form->control('fecha_creacion', ['type' => 'hidden', 'value' => $now]);
             echo $this->Form->control('fecha_finalizado', ['type' => 'hidden','empty' => true]);
             echo $this->Form->control('cantidad_votos',['type' => 'hidden', 'value' => 0]);
+            echo $this->Form->control('detalles', ['empty' => true]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submitir')) ?>

@@ -30,6 +30,7 @@ class Proyecto extends Entity
         'monto_necesario' => true,
         'fecha_creacion' => true,
         'fecha_finalizado' => true,
-        'cantidad_votos' => true
+        'cantidad_votos' => true, 
+        'detalles' => true
     ];
 }
