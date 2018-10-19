@@ -1,3 +1,31 @@
+.w3-panel { 
+    padding:0.01em 16px;
+    margin-top:16px;
+    margin-bottom:16px;
+}
+
+.w3-round {
+    border-radius:4px;
+}
+
+.w3-green {
+    color:#fff!important;
+    background-color:#4CAF50!important;
+}
+
+.linknoti {
+    color:#FFFFFF!important;
+}
+
+.linknoti:hover {
+    color:#000000!important;
+}
+
+#noti2 {
+  padding-left: 390px;
+  margin-right: 10px;
+}
+
 .mpError {
 
     border: solid;

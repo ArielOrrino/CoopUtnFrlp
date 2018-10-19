@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 use Cake\Mailer\Email;
 use Cake\Auth\DefaultPasswordHasher;
@@ -184,7 +185,7 @@ class UsuariosController extends AppController
          $this->Usuarios->save($usuario);
          $this->set(compact('usuario'));
          $this->log($this->Auth->user('id_usuarios'));
-        $this->log($usuario->id_usuarios);
+         $this->log($usuario->id_usuarios);
          if ($this->Auth->user('id_usuarios') === $usuario->id_usuarios) {
              $data = $usuario->toArray();
               $this->log($data);
@@ -192,5 +193,59 @@ class UsuariosController extends AppController
              $this->log($this->Auth->user('voto'));
         }
         $this->redirect(array('controller' => 'Proyectos', 'action' => 'votos'));
+    }
+
+    public function notifica()
+    {
+
+        $usuario = TableRegistry::getTableLocator()->get('Usuarios');
+        $query = $usuario->query();
+        $query->update()
+            ->set(['notificacion' => '1'])
+            ->execute();
+         // $usuario->set('notificacion', '1');
+         // $this->Usuarios->save($usuario);
+         // $this->set(compact('usuario'));
+         
+         $this->redirect(array('controller' => 'Proyectos', 'action' => 'index'));
+    }
+
+        public function borrarnoti()
+    {
+
+        $usuario = TableRegistry::getTableLocator()->get('Usuarios');
+        $id = $this->request->getSession()->read('Auth.User.id_usuarios');
+        $query = $usuario->query();
+        $query->update()
+            ->set(['notificacion' => '0'])
+            ->where(['id_usuarios' => $id])
+            ->execute();
+
+        $usuario2 = $this->Usuarios->get($id, [
+            'contain' => []
+        ]);    
+        $data = $usuario2->toArray();    
+        $this->Auth->setUser($data);   
+        $this->redirect(array('controller' => 'Noticias', 'action' => 'index'));
+    }
+
+        public function borrarnoti2()
+    {
+
+        $usuario = TableRegistry::getTableLocator()->get('Usuarios');
+        $id = $this->request->getSession()->read('Auth.User.id_usuarios');
+        $query = $usuario->query();
+        $query->update()
+            ->set(['notificacion' => '0'])
+            ->where(['id_usuarios' => $id])
+            ->execute();
+
+        $usuario2 = $this->Usuarios->get($id, [
+            'contain' => []
+        ]);    
+        $data = $usuario2->toArray();    
+        $this->Auth->setUser($data);   
+
+        $this->redirect(array('controller' => 'Pages', 'action' => 'home'));
     }
 }
