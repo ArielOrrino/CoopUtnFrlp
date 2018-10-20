@@ -14,6 +14,7 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('Lista de Proyectos'), ['action' => 'index']) ?></li>
+        <li><a href="../../noticias">Noticias de proyectos</a></li> 
     </ul>
 </nav>
 <div class="proyectos form large-9 medium-8 columns content">

@@ -11,6 +11,7 @@
         <li><?= $this->Html->link(__('Nuevo Proyecto'), ['action' => 'add']) ?></li>
       <?php endif; ?>
         <li><?= $this->Html->link(__('Votar Proyecto'), ['action' => 'votos']) ?></li>
+        <li><a href="../../noticias">Noticias de proyectos</a></li> 
     </ul>
 </nav>
 <div class="proyectos index large-9 medium-8 columns content">

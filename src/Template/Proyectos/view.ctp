@@ -13,6 +13,7 @@
           <li><?= $this->Form->postLink(__('Borrar Proyecto'), ['action' => 'delete', $proyecto->idproyectos], ['confirm' => __('Esta seguro que desea eliminar el proyecto # {0}?', $proyecto->idproyectos)]) ?> </li>
         <?php endif; ?>
         <li><?= $this->Html->link(__('Lista de Proyectos'), ['action' => 'index']) ?> </li>
+        <li><a href="../../noticias">Noticias de proyectos</a></li> 
         
     </ul>
 </nav>
