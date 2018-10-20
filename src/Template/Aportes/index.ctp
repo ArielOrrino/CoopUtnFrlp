@@ -13,8 +13,8 @@
            <?php $totalD = 0;
                  $totalU = 0;
                  $total = 0;
-               foreach ($aportes as $aporte): 
-                if ($aporte->proyectos_idproyectos == 0) 
+               foreach ($aportes as $aporte):
+                if ($aporte->proyectos_idproyectos == 0)
                 {
                      $totalD = $totalD + $aporte->monto;
                      $total = $total + $aporte->monto;
@@ -25,6 +25,12 @@
             endforeach; ?>
 <div class="aportes index large-9 medium-8 columns content">
     <h3><?= __('Aportes') ?></h3>
+
+    <span>Buscar aporte </span><input id="busqaporte" name="busqaporte"> <?= $this->Form->Html->link('Buscar',['action'=>'buscaraporte']) ?>
+    <br>
+    <div> <?php if ($aporte) { echo $aporte->idaportes; } ?></div>
+    <br>
+
     <span>Total para proximo proyecto: $</span><?php echo $totalD ?>  <span>  Total utilizado: $</span><?php echo $totalU ?>
     <span>Total Donado historico: $</span><?php echo $total ?>
     <br>
@@ -35,7 +41,7 @@
                 <th scope="col"><?= $this->Paginator->sort('#Control') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('monto') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Proyecto destino') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fecha_aporte') ?></th> 
+                <th scope="col"><?= $this->Paginator->sort('fecha_aporte') ?></th>
                 <th scope="col" class="actions"><?= __('Acciones') ?></th>
             </tr>
         </thead>
@@ -48,8 +54,8 @@
                 <td><?= h($aporte->fecha_aporte) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Ver'), ['action' => 'view', $aporte->idaportes]) ?>
-                    
-               <?php if ($this->request->getSession()->read('Auth.User.tipo_usuario')=='A') : ?> 
+
+               <?php if ($this->request->getSession()->read('Auth.User.tipo_usuario')=='A') : ?>
                     <?= $this->Html->link(__('Editar'), ['action' => 'edit', $aporte->idaportes]) ?>
                     <?= $this->Form->postLink(__('Borrar'), ['action' => 'delete', $aporte->idaportes], ['confirm' => __('Esta seguro que desea eliminar el aporte # {0}?', $aporte->idaportes)]) ?>
                 <?php endif; ?>

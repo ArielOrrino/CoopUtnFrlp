@@ -7,7 +7,7 @@ use Cake\ORM\TableRegistry;
 use Cake\Mailer\Email;
 use Cake\Auth\DefaultPasswordHasher;
 use Cake\Utility\Security;
-use Cake\ORM\TableRegistry;
+//use Cake\ORM\TableRegistry;
 
 /**
  * Usuarios Controller
@@ -33,7 +33,7 @@ class UsuariosController extends AppController
                     'host' => 'ssl://smtp.gmail.com',
                     'port' => 465,
                     'username' => 'utncoopfrlp@gmail.com',
-                    'password' => 'PASSWORD',
+                    'password' => 'utn11utn',
                     'className' => 'Smtp'
                 ]);
 
@@ -206,7 +206,7 @@ class UsuariosController extends AppController
          // $usuario->set('notificacion', '1');
          // $this->Usuarios->save($usuario);
          // $this->set(compact('usuario'));
-         
+
          $this->redirect(array('controller' => 'Proyectos', 'action' => 'index'));
     }
 
@@ -223,9 +223,9 @@ class UsuariosController extends AppController
 
         $usuario2 = $this->Usuarios->get($id, [
             'contain' => []
-        ]);    
-        $data = $usuario2->toArray();    
-        $this->Auth->setUser($data);   
+        ]);
+        $data = $usuario2->toArray();
+        $this->Auth->setUser($data);
         $this->redirect(array('controller' => 'Noticias', 'action' => 'index'));
     }
 
@@ -242,9 +242,9 @@ class UsuariosController extends AppController
 
         $usuario2 = $this->Usuarios->get($id, [
             'contain' => []
-        ]);    
-        $data = $usuario2->toArray();    
-        $this->Auth->setUser($data);   
+        ]);
+        $data = $usuario2->toArray();
+        $this->Auth->setUser($data);
 
         $this->redirect(array('controller' => 'Pages', 'action' => 'home'));
     }

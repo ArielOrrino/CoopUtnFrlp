@@ -116,7 +116,7 @@ $this->redirect("$preference->sandbox_init_point");
         if ($this->request->is('post')) {
             $aporte = $this->Aportes->patchEntity($aporte, $this->request->getData());
             if ($this->Aportes->save($aporte)) {
-                
+
                 return $this->redirect(array('action' => 'recibo', $aporte->idaportes));
 
             }
@@ -174,7 +174,7 @@ public function recibo($id = null)
             'contain' => []
         ]);
 
-        $this->set('aporte', $aporte);  
+        $this->set('aporte', $aporte);
     }
 
     public function addmp($monto = null)
@@ -185,7 +185,24 @@ public function recibo($id = null)
         $now = date('Y-m-d H:i:s',Time());
         $aporte->fecha_aporte = $now;
         $this->Aportes->save($aporte);
-        return $this->redirect(array('action' => 'recibo', $aporte->idaportes));           
+        return $this->redirect(array('action' => 'recibo', $aporte->idaportes));
     }
-        
+
+    public function buscaraporte()
+    {
+        $idaportes = $this->request->getData('busqaporte');
+        $aporte2 = $this->Aportes->newEntity();
+        $aporte2 = $this->Aportes->find('all')->where(['Aportes.idaportes' => $idaportes])->first();
+
+        $this->set(compact('aporte2', $aporte2));
+
+
+        /*$usuario2 = $this->Usuarios->get($id, [
+            'contain' => []
+        ]);
+        $data = $usuario2->toArray();
+        $this->Auth->setUser($data);
+            */
+           return $this->redirect(array('action' => 'index'));
+        }
 }
