@@ -121,7 +121,7 @@ class AppController extends Controller
 
         //usuario común
         if($this->Auth->user('tipo_usuario') == 'C'){
-            $this->log($this->Auth->user('tipo_usuario'));
+            // $this->log($this->Auth->user('tipo_usuario'));
             if(in_array($this->request->getParam('controller'),['Usuarios'])){
             $this->Auth->deny(['index']);
             }
