@@ -32,7 +32,7 @@ class UsuariosController extends AppController
                     'host' => 'ssl://smtp.gmail.com',
                     'port' => 465,
                     'username' => 'utncoopfrlp@gmail.com',
-                    'password' => 'PASSWORD',
+                    'password' => 'utn11utn',
                     'className' => 'Smtp'
                 ]);
 
