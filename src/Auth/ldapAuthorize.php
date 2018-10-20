@@ -19,10 +19,5 @@ class LdapAuthorize extends BaseAuthorize
                 return true;
             }
         }
-        // if ($this->Auth->user('rol') == 'admin') {
-        //         return true;
-        // } else {
-        //         return false;
-        // }
     }
 }

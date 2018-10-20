@@ -77,18 +77,22 @@ class UsuariosController extends AppController
          if ($this->request->is('post'))
           {
             $user= $this->Auth->identify();
-
-            $id = $this->request->data("usuario");
-            $usuario = $this->Usuarios->newEntity();
-            $usuario = $this->Usuarios->find('all')->where(['Usuarios.usuario' => $id])->first();
-
-            if($usuario->verified == '1')
-            {
-                $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
-            }
-            else
-            {
+            if($user) {
+                 $id = $this->request->data("usuario");
+                 $usuario = $this->Usuarios->newEntity();
+                 $usuario = $this->Usuarios->find('all')->where(['Usuarios.usuario' => $id])->first();
+                 if ($usuario==null) {
+                      $this->Flash->error('Usuario y/o contraseña incorrectos, vuelva a intentar');
+                 } else {
+                         if($usuario->verified == '1') {
+                             $this->Auth->setUser($user);
+                             return $this->redirect($this->Auth->redirectUrl());
+                         } else {
+                             $this->Flash->error('Usuario y/o contraseña incorrectos, vuelva a intentar');
+                         }
+                 }
+                 $this->Flash->error('Usuario y/o contraseña incorrectos, vuelva a intentar');
+            } else {
                 $this->Flash->error('Usuario y/o contraseña incorrectos, vuelva a intentar');
             }
         }
