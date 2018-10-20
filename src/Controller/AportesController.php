@@ -21,8 +21,13 @@ class AportesController extends AppController
     public function index()
     {
         $aportes = $this->paginate($this->Aportes);
-
         $this->set(compact('aportes'));
+
+        $idaportes = $this->request->getData('busqaporte');
+        $aporte2 = $this->Aportes->newEntity();
+        $aporte2 = $this->Aportes->find('all')->where(['Aportes.idaportes' => $idaportes])->first();
+        $this->set(compact('aporte2'));
+
     }
 
     public function confirm()
@@ -188,21 +193,4 @@ public function recibo($id = null)
         return $this->redirect(array('action' => 'recibo', $aporte->idaportes));
     }
 
-    public function buscaraporte()
-    {
-        $idaportes = $this->request->getData('busqaporte');
-        $aporte2 = $this->Aportes->newEntity();
-        $aporte2 = $this->Aportes->find('all')->where(['Aportes.idaportes' => $idaportes])->first();
-
-        $this->set(compact('aporte2', $aporte2));
-
-
-        /*$usuario2 = $this->Usuarios->get($id, [
-            'contain' => []
-        ]);
-        $data = $usuario2->toArray();
-        $this->Auth->setUser($data);
-            */
-           return $this->redirect(array('action' => 'index'));
-        }
 }

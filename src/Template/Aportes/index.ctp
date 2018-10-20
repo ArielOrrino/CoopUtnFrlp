@@ -26,10 +26,44 @@
 <div class="aportes index large-9 medium-8 columns content">
     <h3><?= __('Aportes') ?></h3>
 
-    <span>Buscar aporte </span><input id="busqaporte" name="busqaporte"> <?= $this->Form->Html->link('Buscar',['action'=>'buscaraporte']) ?>
+
+    <?php
+        echo $this->Form->create("Registrations",array('url'=>'/aportes'));
+        echo "<span>Buscar aporte</span><br><input id='busqaporte' name='busqaporte'>";
+        echo $this->Form->button('Buscar');
+        echo $this->Form->end();
+    ?>
+
+
+
     <br>
-    <div> <?php if ($aporte) { echo $aporte->idaportes; } ?></div>
+    <div>
+
+<?php
+    if (isset($aporte2)) {
+        echo '<table cellpadding="0" cellspacing="0">';
+        echo '    <thead>';
+        echo '        <tr>';
+        echo '            <th scope="col">#Control</th>';
+        echo '            <th scope="col">monto</th>';
+        echo '            <th scope="col">fecha_aporte</th>';
+        echo '        </tr>';
+        echo '    </thead>';
+        echo '    <tbody>';
+        echo '        <tr>';
+        echo '            <td>'.$aporte2->idaportes .'</td>';
+        echo '            <td>'.$aporte2->monto .'</td>';
+        echo '            <td>'.$aporte2->fecha_aporte .'</td>';
+        echo '        </tr>';
+        echo '    </tbody>';
+        echo '</table>';
+    }
+?>
+
+    </div>
     <br>
+
+
 
     <span>Total para proximo proyecto: $</span><?php echo $totalD ?>  <span>  Total utilizado: $</span><?php echo $totalU ?>
     <span>Total Donado historico: $</span><?php echo $total ?>
