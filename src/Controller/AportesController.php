@@ -21,8 +21,13 @@ class AportesController extends AppController
     public function index()
     {
         $aportes = $this->paginate($this->Aportes);
-
         $this->set(compact('aportes'));
+
+        $idaportes = $this->request->getData('busqaporte');
+        $aporte2 = $this->Aportes->newEntity();
+        $aporte2 = $this->Aportes->find('all')->where(['Aportes.idaportes' => $idaportes])->first();
+        $this->set(compact('aporte2'));
+
     }
 
     public function confirm()
@@ -77,15 +82,15 @@ class AportesController extends AppController
          "success" => "http://localhost:8765/aportes/addmp/$monto",
          "failure" => "http://localhost:8765/aportes/confirm1/$monto",
          "pending" => "http://www.tu-sitio/pending"
-);
-$preference->auto_return = "approved";
+        );
+        $preference->auto_return = "approved";
         //$payer->email = "cary@yahoo.com";
         # Setting preference properties
         $preference->items = array($item);
         $preference->payer = $payer;
         # Save and posting preference
         $preference->save();
-$this->redirect("$preference->sandbox_init_point");
+        $this->redirect("$preference->sandbox_init_point");
         // $this->redirect("$preference->init_point");
     }
 
@@ -116,7 +121,7 @@ $this->redirect("$preference->sandbox_init_point");
         if ($this->request->is('post')) {
             $aporte = $this->Aportes->patchEntity($aporte, $this->request->getData());
             if ($this->Aportes->save($aporte)) {
-                
+
                 return $this->redirect(array('action' => 'recibo', $aporte->idaportes));
 
             }
@@ -168,13 +173,14 @@ $this->redirect("$preference->sandbox_init_point");
 
         return $this->redirect(['action' => 'index']);
     }
-public function recibo($id = null)
+
+    public function recibo($id = null)
     {
        $aporte = $this->Aportes->get($id, [
             'contain' => []
         ]);
 
-        $this->set('aporte', $aporte);  
+        $this->set('aporte', $aporte);
     }
 
     public function addmp($monto = null)
@@ -185,7 +191,7 @@ public function recibo($id = null)
         $now = date('Y-m-d H:i:s',Time());
         $aporte->fecha_aporte = $now;
         $this->Aportes->save($aporte);
-        return $this->redirect(array('action' => 'recibo', $aporte->idaportes));           
+        return $this->redirect(array('action' => 'recibo', $aporte->idaportes));
     }
-        
+
 }

@@ -205,7 +205,7 @@ class UsuariosController extends AppController
          // $usuario->set('notificacion', '1');
          // $this->Usuarios->save($usuario);
          // $this->set(compact('usuario'));
-         
+
          $this->redirect(array('controller' => 'Proyectos', 'action' => 'index'));
     }
 
@@ -222,9 +222,9 @@ class UsuariosController extends AppController
 
         $usuario2 = $this->Usuarios->get($id, [
             'contain' => []
-        ]);    
-        $data = $usuario2->toArray();    
-        $this->Auth->setUser($data);   
+        ]);
+        $data = $usuario2->toArray();
+        $this->Auth->setUser($data);
         $this->redirect(array('controller' => 'Noticias', 'action' => 'index'));
     }
 
@@ -241,9 +241,9 @@ class UsuariosController extends AppController
 
         $usuario2 = $this->Usuarios->get($id, [
             'contain' => []
-        ]);    
-        $data = $usuario2->toArray();    
-        $this->Auth->setUser($data);   
+        ]);
+        $data = $usuario2->toArray();
+        $this->Auth->setUser($data);
 
         $this->redirect(array('controller' => 'Pages', 'action' => 'home'));
     }
