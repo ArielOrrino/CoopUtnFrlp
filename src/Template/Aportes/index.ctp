@@ -29,8 +29,8 @@
 
     <?php
         echo $this->Form->create("Registrations",array('url'=>'/aportes'));
-        echo "<span>Buscar aporte</span><br><input id='busqaporte' name='busqaporte'>";
-        echo $this->Form->button('Buscar');
+        echo "<input id='busqaporte' name='busqaporte' placeholder='Número de control'>";
+        echo $this->Form->button(__('Buscar'), ['id' => 'botonbuscar']);
         echo $this->Form->end();
     ?>
 
