@@ -16,9 +16,9 @@
     <div class = "recibo">
         <img class = "LogoRecibo" src="../../img/logoCoop.jpg">
         <h1>Recibo</h1>
-
+        <?php $fecha = date("d/m/y",strtotime($aporte->fecha_aporte)); ?>
         <h3> Hemos recibido tu aporte, tu ayuda es muy valiosa para continuar mejorando nuestra Universidad juntos, muchas gracias! </h3>
-        <span> Tu aporte de $<?php echo $aporte->monto ?> fue registrado exitosamente, podras verlo en la pagina con el numero de control # <?php echo $aporte->idaportes ?> con fecha <?php echo $aporte->fecha_aporte ?></span>
+        <span> Tu aporte de $<?php echo $aporte->monto ?> fue registrado exitosamente, podras verlo en la pagina con el numero de control # <?php echo $aporte->idaportes ?> con fecha <?php echo $fecha ?></span>
         <div class ='espacioQR'> 
             <span> Si lo deseas, podes escanear este codigo y te redirigirá a ver tu aporte</span>
         <div id='qr'></div> 

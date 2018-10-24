@@ -30,9 +30,11 @@
              <tr>                
                 <td><?= h($usuario->usuario) ?></td>
                 <td><?= h($usuario->email) ?></td>
-                <td><?= h($usuario->tipo_usuario) ?></td>    
-                <td><?= h($usuario->create_time) ?></td>
-                <td><?= h($usuario->last_login) ?></td>
+                <td><?= h($usuario->tipo_usuario) ?></td>  
+                 <?php $fechaCreacion = date("d/m/y",strtotime($usuario->create_time)); ?>
+                 <?php $fechaUltimoLogin = date("d/m/y",strtotime($usuario->last_login)); ?>  
+                <td><?= h($fechaCreacion) ?></td>
+                <td><?= h($fechaUltimoLogin) ?></td>
                 <td class="actions">
                  <?php if ($this->request->getSession()->read('Auth.User.usuario')==$usuario->usuario) : ?> 
                     <?= $this->Html->link(__('Ver'), ['action' => 'view', $usuario->id_usuarios]) ?>

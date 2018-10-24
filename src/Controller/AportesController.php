@@ -18,6 +18,17 @@ class AportesController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
+
+    public $paginate = [
+        'limit' => 2550
+    ];
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('Paginator');
+    }
+
     public function index()
     {
         $aportes = $this->paginate($this->Aportes);

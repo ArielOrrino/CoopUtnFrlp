@@ -25,14 +25,15 @@
             <th scope="row"><?= __('Email') ?></th>
             <td><?= h($usuario->email) ?></td>
         </tr>
-            
+            <?php $fechaCreacion = date("d/m/y",strtotime($usuario->create_time)); ?>
+            <?php $fechaUltimoLogin = date("d/m/y",strtotime($usuario->last_login)); ?>                 
         <tr>
             <th scope="row"><?= __('Fecha de Creacion') ?></th>
-            <td><?= h($usuario->create_time) ?></td>
+            <td><?= h($fechaCreacion) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Ultimo Login') ?></th>
-            <td><?= h($usuario->last_login) ?></td>
+            <td><?= h($fechaUltimoLogin) ?></td>
         </tr>
     </table>
 </div>

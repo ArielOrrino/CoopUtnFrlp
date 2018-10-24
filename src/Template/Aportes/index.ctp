@@ -25,20 +25,14 @@
             endforeach; ?>
 <div class="aportes index large-9 medium-8 columns content">
     <h3><?= __('Aportes') ?></h3>
-
-
     <?php
         echo $this->Form->create("Registrations",array('url'=>'/aportes'));
         echo "<input id='busqaporte' name='busqaporte' placeholder='Número de control'>";
         echo $this->Form->button(__('Buscar'), ['id' => 'botonbuscar']);
         echo $this->Form->end();
     ?>
-
-
-
     <br>
     <div>
-
 <?php
     if (isset($aporte2)) {
         echo '<table cellpadding="0" cellspacing="0">';
@@ -81,17 +75,18 @@
         </thead>
         <tbody>
             <?php foreach ($aportes as $aporte): ?>
+                <?php $fecha = date("d/m/y",strtotime($aporte->fecha_aporte)); ?>
             <tr>
                 <td><?= $this->Number->format($aporte->idaportes) ?></td>
                 <td><?= $this->Number->format($aporte->monto) ?></td>
-                <td><?= $this->Number->format($aporte->proyectos_idproyectos) ?></td>
-                <td><?= h($aporte->fecha_aporte) ?></td>
+                <td><?= $this->Number->format($aporte->proyectos_idproyectos) ?></td>                
+                <td><?= h($fecha) ?></td>
+                
                 <td class="actions">
                     <?= $this->Html->link(__('Ver'), ['action' => 'view', $aporte->idaportes]) ?>
 
                <?php if ($this->request->getSession()->read('Auth.User.tipo_usuario')=='A') : ?>
                     <?= $this->Html->link(__('Editar'), ['action' => 'edit', $aporte->idaportes]) ?>
-                    <?= $this->Form->postLink(__('Borrar'), ['action' => 'delete', $aporte->idaportes], ['confirm' => __('Esta seguro que desea eliminar el aporte # {0}?', $aporte->idaportes)]) ?>
                 <?php endif; ?>
                 </td>
             </tr>
