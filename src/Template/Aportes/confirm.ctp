@@ -25,5 +25,8 @@
         ?>
     </fieldset>
     <?php echo $this->Html->link(('Donar'), ['action' => 'mp', $MD],array('class' => 'button', 'id' => 'bdonar'));?>
+    <br>
+    <?php $montoDesc= $MD - $MD*5/100; ?> 
+    <p id="mensajeComision"> <?php echo "ATENCION: Al utilizar MercadoPago, se genera un pequeño cargo como comision de un 5% sobre el total de lo donado. En este caso, usted estará donando $".$montoDesc."."; ?> </p>
     <?= $this->Form->end() ?>
 </div>

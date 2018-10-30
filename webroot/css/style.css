@@ -1,3 +1,9 @@
+#mensajeComision {
+    color: red;
+    font-weight: bold;
+    font-size:20px;
+}
+
 #busqaporte {
     height: 50px;
     width: 200px;

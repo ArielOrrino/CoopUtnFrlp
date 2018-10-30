@@ -197,7 +197,7 @@ class AportesController extends AppController
     public function addmp($monto = null)
      {
         $aporte = $this->Aportes->newEntity();
-        $aporte->monto = $monto;
+        $aporte->monto = $monto - $monto*5/100;
         date_default_timezone_set("America/Argentina/Buenos_Aires");
         $now = date('Y-m-d H:i:s',Time());
         $aporte->fecha_aporte = $now;
