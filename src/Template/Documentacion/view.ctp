@@ -37,7 +37,8 @@
         </tr>
         <tr>
             <th scope="row"><?= __('Fecha Subida') ?></th>
-            <td><?= h($documentacion->fecha_subida) ?></td>
+            <?php $fecha = date("d/m/y",strtotime($documentacion->fecha_subida)); ?>
+            <td><?= h($fecha) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('nombre del archivo') ?></th>

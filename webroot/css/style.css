@@ -1,3 +1,101 @@
+#busqaporte {
+    height: 50px;
+    width: 200px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;     
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+#busqaporte:focus {
+    width: 80%;
+}
+
+#botonbuscar {
+    height: 50px;
+
+}
+
+.negrita {
+    font-weight: bold;
+    margin-right: 100px;
+    font-size: 18px;
+}
+
+.w3-panel { 
+    padding:0.01em 16px;
+    margin-top:16px;
+    margin-bottom:16px;
+}
+
+.w3-round {
+    border-radius:4px;
+}
+
+.w3-green {
+    color:#fff!important;
+    background-color:#4CAF50!important;
+}
+
+.linknoti {
+    color:#FFFFFF!important;
+}
+
+.linknoti:hover {
+    color:#000000!important;
+}
+
+#noti2 {
+  padding-left: 390px;
+  margin-right: 10px;
+}
+
+.mpError {
+
+    border: solid;
+    border-color: red;
+    border-width: 3px;
+
+}
+
+.espacioQR {
+
+    margin:5px;
+    padding:5px;
+
+}
+
+#qr {
+  width:10px;
+  height:100px;
+  margin: 0 auto;
+  margin-top: 15px;
+
+}
+
+.recibo {
+    border: solid;
+    border-color: gray;
+    padding: 10px;
+    padding-bottom: 30px;
+}
+.LogoRecibo{
+    float:right;
+    width: 100px; /* Full width */
+    height: 80px; /* Full height */
+}
+
+#logomenu{
+    width: 80px !important; /* Full width */
+    height: 50px; /* Full height */
+}
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -813,4 +911,27 @@ div.message.hidden {
 table td {
     vertical-align: top;
     word-break: break-all;
+}
+
+#plantillaproy {
+    margin-bottom: 100px;
+}
+
+.titproy {
+    text-align: center;
+}
+
+#titnoticias {
+    text-align: center;
+    margin-bottom: 50px;
+    color: #be140b;
+}
+
+.notiproy {
+    margin-top: 80px;
+}
+
+.imgpro {
+    height: 500px !important;
+    width: 1100px !important;
 }

@@ -13,6 +13,7 @@
           <li><?= $this->Form->postLink(__('Borrar Proyecto'), ['action' => 'delete', $proyecto->idproyectos], ['confirm' => __('Esta seguro que desea eliminar el proyecto # {0}?', $proyecto->idproyectos)]) ?> </li>
         <?php endif; ?>
         <li><?= $this->Html->link(__('Lista de Proyectos'), ['action' => 'index']) ?> </li>
+        <li><a href="../../noticias">Noticias de proyectos</a></li> 
         
     </ul>
 </nav>
@@ -31,13 +32,24 @@
             <th scope="row"><?= __('Cantidad Votos') ?></th>
             <td><?= $this->Number->format($proyecto->cantidad_votos) ?></td>
         </tr>
+        <?php $fechaCreacion = date("d/m/y",strtotime($proyecto->fecha_creacion)); ?>
+        <?php if (!$proyecto->fecha_finalizado==null) : ?> 
+                    <?php $fechaFinalizado = date("d/m/y",strtotime($proyecto->fecha_finalizado)); ?>                    
+            <?php else : ?>
+                        <?php $fechaFinalizado = null;  ?> 
+            <?php endif; ?>
         <tr>
             <th scope="row"><?= __('Fecha Creacion') ?></th>
-            <td><?= h($proyecto->fecha_creacion) ?></td>
+            <td><?= h($fechaCreacion) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Fecha Finalizado') ?></th>
-            <td><?= h($proyecto->fecha_finalizado) ?></td>
+            <td><?= h($fechaFinalizado) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Detalles') ?></th>
+            <td><?= h($proyecto->detalles) ?></td>
         </tr>
     </table>
+
 </div>

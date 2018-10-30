@@ -7,6 +7,9 @@ function myFunction() {
     }
 }
 
+function cerrarnoti() {
+  document.getElementById("notific").style.display = "none";
+}
 
 function guardarMonto() {
     var montoDonacion = document.getElementById("monto").value;
@@ -46,17 +49,48 @@ window.onclick = function(event) {
 //-----------------FIN-LOGIN ANIMADO--------------------//
 
 
-/*//---------------------LOGIN INCORRECTO--------------------//
-src="//code.jquery.com/jquery-1.12.4.js";
-src="//code.jquery.com/ui/1.12.1/jquery-ui.js";
+//---------------------LOGIN INCORRECTO--------------------//
 
+src="code.jquery.com/jquery-1.12.4.js";
+src="code.jquery.com/ui/1.12.1/jquery-ui.js";
+$(document).ready(function(){
+ $('#login').click(function(){
+  var usuario = $('#usuario').val();
+  var password = $('#password').val();
+  if($.trim(usuario).length > 0 && $.trim(password).length > 0)
+  {
+   $.ajax({
+    url:"usuarios/login",
+    method:"POST",
+    data:{usuario:usuario, password:password},
+    cache:false,
+    beforeSend:function(){
+     $('#login').val("connecting...");
+    },
+    success:function(data)
+    {
+     if(data)
+     {
+      $("body").load("home.php").hide().fadeIn(1500);
+     }
+     else
+     {
+      var options = {
+       distance: '40',
+       direction:'left',
+       times:'3'
+      }
+      $("#test").effect("shake", options, 800);
+      $('#login').val("Login");
+      $('#error').html("<span class='text-danger'>Invalid username or Password</span>");
+     }
+    }
+   });
+  }
+  else
+  {
 
-// Get the modal
-var login = document.getElementById("test");
-var btn2 = document.getElementById("vibrar");
-console.log(btn2);
-// When the user clicks the button, open the modal 
-btn2.onclick = function() {
-  $( "#id2" ).effect( "shake" );
-};*/
+  }
+ });
+});
 //-----------------FIN-LOGIN INCORRECTO--------------------//

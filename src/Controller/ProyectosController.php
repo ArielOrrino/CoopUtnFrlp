@@ -78,8 +78,13 @@ class ProyectosController extends AppController
             if ($this->Proyectos->save($proyecto)) {
                 $this->Flash->success(__('El proyecto ha sido agregado con exito.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
+                if ($proyecto->fecha_finalizado == null){
+                    return $this->redirect(['action' => 'index']);
+                }
+                else
+                    return $this->redirect(array('controller' => 'Usuarios', 'action' => 'notifica'));
+                }
+
             $this->Flash->error(__('El proyecto no ha podido ser guardado.'));
         }
         $this->set(compact('proyecto'));
@@ -121,4 +126,5 @@ class ProyectosController extends AppController
 
         $this->set(compact('proyectos'));
     }
+
 }

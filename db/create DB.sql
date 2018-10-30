@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS `cooperativa`.`proyectos` (
   `monto_necesario` DECIMAL(12,2) NULL DEFAULT NULL,
   `fecha_creacion` DATE NULL DEFAULT NULL,
   `fecha_finalizado` DATE NULL DEFAULT NULL,
-  `cantidad_votos` INT(11) NULL DEFAULT NULL,
+  `cantidad_votos` INT(11) NULL DEFAULT NULL, 
+  `detalles` VARCHAR(1000) NULL DEFAULT NULL,
   PRIMARY KEY (`idproyectos`),
   UNIQUE INDEX `idproyectos_UNIQUE` (`idproyectos` ASC) )
 ENGINE = InnoDB
@@ -66,6 +67,8 @@ CREATE TABLE IF NOT EXISTS `cooperativa`.`usuarios` (
   `id_usuarios` INT(11) NOT NULL AUTO_INCREMENT,
   `usuario` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NULL DEFAULT NULL,
+  `verified` INT(1) NULL DEFAULT NULL,
+  `token` VARCHAR(255) NULL DEFAULT NULL,
   `password` VARCHAR(255) NOT NULL,
   `create_time` TIMESTAMP NULL DEFAULT NULL,
   `last_login` TIMESTAMP NULL DEFAULT NULL,

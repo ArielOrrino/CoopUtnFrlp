@@ -33,16 +33,12 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
     <meta property="og:site_name" content="Cooperativa Alumnos Utn">
     <script type="text/javascript" src="https://d1di2lzuh97fh2.cloudfront.net/files/3f/3fw/3fwae8.js?ph=a0eca4f8da"></script>
     
-   
-
     <title>Cooperativa alumnos UTN</title>
     <link href="https://d1di2lzuh97fh2.cloudfront.net/files/3r/3rx/3rxffv.css?ph=a0eca4f8da" rel="stylesheet">
      <?= $this->Html->meta('icon') ?> 
 
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('style.css') ?>
-
-    
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -58,7 +54,8 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                     <div class="section-wrapper-content cf">
                         <div class="section header fullscreen-all header-03 home s-media wnd-background-image">
                             <div class="section-bg">
-                                <div class="section-bg-layer wnd-background-image  bgatt-scroll bgpos-center-center" style="background-image: url(&quot;https://cooperativa19.webnode.com/_files/200000001-5b0935c01e/FRLP%206.JPG?t=1&quot;);">
+                                <div class="section-bg-layer wnd-background-image  bgatt-scroll bgpos-center-center">
+                                    <img src="/img/FRLP.jpg">
                                 </div>
                                 <div class="header-wrapper header-fixed wnd-fixed header-bg">
                                     <div class="nav-line section-inner">
@@ -66,7 +63,7 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                                              <div class="logo-content">        
                                                <div class="logo-image">
                                                  <div class="logo-image-cell">
-                                       <img src="https://cooperativa19.webnode.com/_files/200000000-a34d6a441c/200/5fgI4pqs_400x400.jpg">
+                                       <img id="logomenu" src="/img/logoCoop.jpg">
                                                  </div>
                                                 </div>            
                                                  <div class="logo-text">
@@ -101,7 +98,7 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                                                         <a href="../../documentacion/">
                                                             <span>Documentacion</span>
                                                         </a>            
-                                                    </li>
+                                                    </li>                                                   
                                                     <li>
                                                         <a href="../../aportes">
                                                             <span>Aportes</span>
@@ -151,6 +148,13 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                                                     </span>
                                                 </div>
                                             </h1>
+                                            <?php if ($this->request->getSession()->read('Auth.User.notificacion')=='1') : ?> 
+                                                 <div id="notific" class="w3-panel w3-green w3-round">
+                                                    <strong>Finalizó uno de los Proyectos!</strong>
+                                                    <?= $this->Form->Html->link('Hace click acá y enterate',['controller'=>'usuarios','action'=>'borrarnoti'],['class'=>'linknoti', 'onClick' => 'cerrarnoti()']) ?>
+                                                    <?= $this->Form->Html->link('X',['controller'=>'usuarios','action'=>'borrarnoti2'],['class'=>'linknoti', 'id' => 'noti2', 'onClick' => 'cerrarnoti()']) ?>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
@@ -177,9 +181,10 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                 <?= $this->Form->control('password', ['type'=>'password', 'name' => 'password','id' => 'password','required', 'placeholder' => 'Password', 'label'=>false,
                 'required']) ?>
                 <div id="botoneslog">
-                <?= $this->Form->button('Iniciar Sesion') ?>                                 
+                <?= $this->Form->button('Iniciar Sesion',['class'=>'login','id'=>'login','name'=>'login']) ?>                                 
                 <?= $this->Form->Html->link('Registrarse',['controller'=>'usuarios','action'=>'add'],['class'=>'button', 'id' => 'registrarse']) ?>             
                 </div>
+                <div id = "error"> </div>
                 </fieldset> 
             <?=$this->Form->end() ?>
         </div>

@@ -30,7 +30,8 @@
                 <td><?= $this->Number->format($documentacion->iddocumentacion) ?></td>
                 <td><?= $this->Number->format($documentacion->idproyectos) ?></td>
                 <td><?= $this->Number->format($documentacion->monto_factura) ?></td>
-                <td><?= h($documentacion->fecha_subida) ?></td>
+                <?php $fecha = date("d/m/y",strtotime($documentacion->fecha_subida)); ?>
+                <td><?= h($fecha) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Ver'), ['action' => 'view', $documentacion->iddocumentacion]) ?>
                 <?php if ($this->request->getSession()->read('Auth.User.tipo_usuario')=='A') : ?> 

@@ -72,6 +72,7 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
         </div>
     </div>
 </body>
+    <?= $this->Flash->render() ?>
     <?= $this->Html->script('funciones.js') ?>
 </html>
  

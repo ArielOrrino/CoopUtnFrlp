@@ -8,6 +8,7 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Modulos') ?></li>
         <li><?= $this->Html->link(__('Lista de Proyectos'), ['action' => 'index']) ?></li>
+        <li><a href="../../noticias">Noticias de proyectos</a></li> 
     </ul>
 </nav>
 <div class="proyectos form large-9 medium-8 columns content">
@@ -22,6 +23,7 @@
             echo $this->Form->control('fecha_creacion', ['type' => 'hidden', 'value' => $now]);
             echo $this->Form->control('fecha_finalizado', ['type' => 'hidden','empty' => true]);
             echo $this->Form->control('cantidad_votos',['type' => 'hidden', 'value' => 0]);
+            echo $this->Form->control('detalles', ['empty' => true]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submitir')) ?>

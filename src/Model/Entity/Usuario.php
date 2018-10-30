@@ -34,7 +34,8 @@ class Usuario extends Entity
         'create_time' => true,
         'last_login' => true,
         'autorizado' => true,
-        'voto' => true
+        'voto' => true,
+        'notificacion' => true
     ];
 
     /**

@@ -11,6 +11,7 @@
         <li><?= $this->Html->link(__('Nuevo Proyecto'), ['action' => 'add']) ?></li>
       <?php endif; ?>
         <li><?= $this->Html->link(__('Votar Proyecto'), ['action' => 'votos']) ?></li>
+        <li><a href="../../noticias">Noticias de proyectos</a></li> 
     </ul>
 </nav>
 <div class="proyectos index large-9 medium-8 columns content">
@@ -31,8 +32,14 @@
             <tr>
                 <td><?= h($proyecto->nombre_proyecto) ?></td>
                 <td><?= $this->Number->format($proyecto->monto_necesario) ?></td>
-                <td><?= h($proyecto->fecha_creacion) ?></td>
-                <td><?= h($proyecto->fecha_finalizado) ?></td>
+                <?php $fechaCreacion = date("d/m/y",strtotime($proyecto->fecha_creacion)); ?>
+                <td><?= h($fechaCreacion) ?></td>
+                <?php if (!$proyecto->fecha_finalizado==null) : ?> 
+                    <?php $fechaFinalizado = date("d/m/y",strtotime($proyecto->fecha_finalizado)); ?>                    
+                    <?php else : ?>
+                        <?php $fechaFinalizado = null;  ?> 
+                <?php endif; ?>
+                <td><?= h($fechaFinalizado) ?></td>
                 <td><?= $this->Number->format($proyecto->cantidad_votos) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('Ver'), ['action' => 'view', $proyecto->idproyectos]) ?>
