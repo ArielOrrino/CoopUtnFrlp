@@ -44,6 +44,11 @@
     background-color:#4CAF50!important;
 }
 
+.w3-red {
+    color:#fff!important;
+    background-color:#f44336!important;
+}
+
 .linknoti {
     color:#FFFFFF!important;
 }
@@ -54,6 +59,11 @@
 
 #noti2 {
   padding-left: 390px;
+  margin-right: 10px;
+}
+
+#noti3 {
+  padding-left: 170px;
   margin-right: 10px;
 }
 

@@ -247,4 +247,42 @@ class UsuariosController extends AppController
 
         $this->redirect(array('controller' => 'Pages', 'action' => 'home'));
     }
+
+        public function borrarNotiVot()
+    {
+
+        $usuario = TableRegistry::getTableLocator()->get('Usuarios');
+        $id = $this->request->getSession()->read('Auth.User.id_usuarios');
+        $query = $usuario->query();
+        $query->update()
+            ->set(['notificacion_vot' => '0'])
+            ->where(['id_usuarios' => $id])
+            ->execute();
+
+        $usuario2 = $this->Usuarios->get($id, [
+            'contain' => []
+        ]);
+        $data = $usuario2->toArray();
+        $this->Auth->setUser($data);
+        $this->redirect(array('controller' => 'Proyectos', 'action' => 'votos'));
+    }
+
+    public function borrarNotiVot2()
+    {
+
+        $usuario = TableRegistry::getTableLocator()->get('Usuarios');
+        $id = $this->request->getSession()->read('Auth.User.id_usuarios');
+        $query = $usuario->query();
+        $query->update()
+            ->set(['notificacion_vot' => '0'])
+            ->where(['id_usuarios' => $id])
+            ->execute();
+
+        $usuario2 = $this->Usuarios->get($id, [
+            'contain' => []
+        ]);
+        $data = $usuario2->toArray();
+        $this->Auth->setUser($data);
+        $this->redirect(array('controller' => 'Pages', 'action' => 'Home'));
+    }
 }
