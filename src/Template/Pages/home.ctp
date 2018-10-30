@@ -156,7 +156,7 @@ $cakeDescription = 'Cooperativa alumnos UTN';?>
                                                 </div>
                                             <?php endif; ?>
                                             <?php if ($this->request->getSession()->read('Auth.User.notificacion_vot')=='1') : ?> 
-                                                 <div id="notific" class="w3-panel w3-red w3-round">
+                                                 <div id="notific" class="w3-panel w3-green w3-round">
                                                     <strong>Comenzó la votación para elegir el próximo proyecto!</strong>
                                                     <?= $this->Form->Html->link('Entrá aca y vota',['controller'=>'usuarios','action'=>'borrarNotiVot'],['class'=>'linknoti', 'onClick' => 'cerrarnoti()']) ?>
                                                     <?= $this->Form->Html->link('X',['controller'=>'usuarios','action'=>'borrarNotiVot2'],['class'=>'linknoti', 'id' => 'noti3', 'onClick' => 'cerrarnoti()']) ?>
