@@ -78,7 +78,6 @@ foreach ($proyectos as $proyecto) {
              ?>
         </tbody>
     </table>
-
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
