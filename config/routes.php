@@ -61,6 +61,8 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/users/register', ['controller' => 'Usuarios', 'action' => 'reg']);
     $routes->connect('/users/verification', ['controller' => 'Usuarios', 'action' => 'verification']);
+    
+
     /**
      * Connect catchall routes for all controllers.
      *

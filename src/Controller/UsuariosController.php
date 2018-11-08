@@ -285,4 +285,5 @@ class UsuariosController extends AppController
         $this->Auth->setUser($data);
         $this->redirect(array('controller' => 'Pages', 'action' => 'Home'));
     }
+
 }

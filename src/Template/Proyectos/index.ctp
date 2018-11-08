@@ -9,6 +9,7 @@
         <li class="heading"><?= __('Modulos') ?></li>
     <?php if ($this->request->getSession()->read('Auth.User.tipo_usuario')=='A') : ?> 
         <li><?= $this->Html->link(__('Nuevo Proyecto'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('Resetear Votos'), ['action' => 'resetVotes']) ?></li>
       <?php endif; ?>
         <li><?= $this->Html->link(__('Votar Proyecto'), ['action' => 'votos']) ?></li>
         <li><a href="../../noticias">Noticias de proyectos</a></li> 

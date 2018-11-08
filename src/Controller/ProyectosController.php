@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Proyectos Controller
@@ -126,5 +127,38 @@ class ProyectosController extends AppController
 
         $this->set(compact('proyectos'));
     }
+
+    public function resetVotes()
+    {
+        $proyectos = TableRegistry::getTableLocator()->get('proyectos');
+        $query = $proyectos->query();
+        $query->update()
+            ->set(['cantidad_votos' => '0'])
+            ->execute();
+
+        $usuario = TableRegistry::getTableLocator()->get('Usuarios');
+        $query = $usuario->query();
+        $query->update()
+            ->set(['voto' => '0'])
+            ->execute();
+        $this->getRequest()->getSession()->write('Auth.User.voto', 0);    
+        return $this->render();    
+        //return $this->redirect(['action' => 'resetvotes']);
+        //$this->redirect(array('controller' => 'Proyectos', 'action' => 'index'));
+    }
+
+    public function notificationNewVote()
+    {
+
+        $usuario = TableRegistry::getTableLocator()->get('Usuarios');
+        $query = $usuario->query();
+        $query->update()
+            ->set(['notificacion_vot' => '1'])
+            ->execute();
+        // $this->redirect(array('controller' => 'Proyectos', 'action' => 'index'));
+    }
+
+
+
 
 }
